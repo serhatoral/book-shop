@@ -27,8 +27,6 @@ public class Book {
 
     private LocalDate publicationDate;
 
-   // private int publisherId;
-
     @ManyToOne //Unidirectional
     @JoinColumn(name = "language_id")
     private BookLanguage language;

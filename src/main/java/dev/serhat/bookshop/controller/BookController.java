@@ -1,5 +1,6 @@
 package dev.serhat.bookshop.controller;
 
+import dev.serhat.bookshop.dto.BookDto;
 import dev.serhat.bookshop.model.Book;
 import dev.serhat.bookshop.service.BookService;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ public class BookController {
     }
 
     @GetMapping("/{bookId}")
-    public ResponseEntity<Book> findById(@PathVariable int bookId){
+    public ResponseEntity<BookDto> findById(@PathVariable int bookId){
         return ResponseEntity.ok(bookService.findById(bookId));
 
     }
