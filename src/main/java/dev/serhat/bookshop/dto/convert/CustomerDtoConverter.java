@@ -1,6 +1,7 @@
 package dev.serhat.bookshop.dto.convert;
 
 import dev.serhat.bookshop.dto.Dto;
+import dev.serhat.bookshop.dto.customers.CustomerExtendedDto;
 import dev.serhat.bookshop.dto.order.OrderDto;
 import dev.serhat.bookshop.dto.address.AddressDto;
 import dev.serhat.bookshop.dto.customers.CustomerAddressDto;
@@ -52,6 +53,19 @@ public class CustomerDtoConverter implements CustomerDtoFactory{
 
         return new CustomerOrderDto(customer.getId(), customer.getFirstName(), customer.getLastName(), customer.getEmail(), customer.getCreateDate(),
                 customer.getLastUpdate(),customer.getIsActive(),orderDtos);
+    }
+
+    @Override
+    public Dto createCustomerExtendedDto(Customer customer) {
+
+        Set<OrderDto> orderDtos = new HashSet<>();
+        customer.getOrders().stream().map(o-> orderDtos.add((OrderDto) orderDtoConverter.createOrderDto(o))).collect(Collectors.toSet());
+
+        Set<AddressDto> addressDtos = new HashSet<>();
+        customer.getAddresses().stream().map(a-> addressDtos.add((AddressDto) addressDtoConverter.createAddressDto(a))).collect(Collectors.toSet());
+
+        return new CustomerExtendedDto(customer.getId(), customer.getFirstName(), customer.getLastName(), customer.getEmail(), customer.getCreateDate(),
+                customer.getLastUpdate(),customer.getIsActive(),orderDtos,addressDtos);
     }
 
 

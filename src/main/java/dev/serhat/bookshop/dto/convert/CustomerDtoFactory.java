@@ -10,4 +10,6 @@ public interface CustomerDtoFactory{
 
     public Dto createCustomerOrderDto(Customer customer);
 
+    public Dto createCustomerExtendedDto(Customer customer);
+
 }

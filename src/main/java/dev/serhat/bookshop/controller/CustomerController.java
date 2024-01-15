@@ -37,5 +37,11 @@ public class CustomerController {
 
     }
 
+    @GetMapping("/{customerId}/extended")
+    public ResponseEntity<Dto> getCustomerExtendedDtoById(@PathVariable int customerId){
+        return ResponseEntity.ok(customerService.getCustomerExtendedDtoById(customerId));
+
+    }
+
 
 }
