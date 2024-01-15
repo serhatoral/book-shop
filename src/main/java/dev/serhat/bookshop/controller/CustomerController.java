@@ -1,7 +1,7 @@
 package dev.serhat.bookshop.controller;
 
 
-import dev.serhat.bookshop.model.Customer;
+import dev.serhat.bookshop.dto.Dto;
 import dev.serhat.bookshop.service.CustomerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +20,16 @@ public class CustomerController {
     }
 
     @GetMapping("/{customerId}")
-    public ResponseEntity<Customer> findById(@PathVariable int customerId){
-        return ResponseEntity.ok(customerService.findById(customerId));
+    public ResponseEntity<Dto> getCustomerDtoById(@PathVariable int customerId){
+        return ResponseEntity.ok(customerService.getCustomerDtoById(customerId));
 
     }
+
+    @GetMapping("/{customerId}/address")
+    public ResponseEntity<Dto> getCustomerAddressDtoById(@PathVariable int customerId){
+        return ResponseEntity.ok(customerService.getCustomerAddressDtoById(customerId));
+
+    }
+
+
 }
