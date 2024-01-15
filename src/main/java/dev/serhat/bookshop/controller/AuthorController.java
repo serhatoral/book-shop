@@ -1,6 +1,6 @@
 package dev.serhat.bookshop.controller;
 
-import dev.serhat.bookshop.dto.AuthorDto;
+import dev.serhat.bookshop.dto.book.AuthorDto;
 import dev.serhat.bookshop.service.AuthorService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

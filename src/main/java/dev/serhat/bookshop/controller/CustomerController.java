@@ -25,8 +25,14 @@ public class CustomerController {
 
     }
 
-    @GetMapping("/{customerId}/address")
+    @GetMapping("/{customerId}/addresses")
     public ResponseEntity<Dto> getCustomerAddressDtoById(@PathVariable int customerId){
+        return ResponseEntity.ok(customerService.getCustomerAddressDtoById(customerId));
+
+    }
+
+    @GetMapping("/{customerId}/orders")
+    public ResponseEntity<Dto> getCustomerOrderDtoById(@PathVariable int customerId){
         return ResponseEntity.ok(customerService.getCustomerAddressDtoById(customerId));
 
     }

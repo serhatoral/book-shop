@@ -1,8 +1,7 @@
 package dev.serhat.bookshop.service;
 
-import dev.serhat.bookshop.dto.AuthorDto;
+import dev.serhat.bookshop.dto.book.AuthorDto;
 import dev.serhat.bookshop.dto.convert.BookAndRelationsDtoFactory;
-import dev.serhat.bookshop.exception.DataNotFoundException;
 import dev.serhat.bookshop.model.Author;
 import dev.serhat.bookshop.repository.AuthorRepository;
 import org.springframework.stereotype.Service;

@@ -19,10 +19,14 @@ public class CustomerService extends BaseService<Customer,Integer>{
 
 
     public Dto getCustomerDtoById(int customerId){
-        return customerDtoFactory.createCustomerDto(super.findById(customerId));
+        return customerDtoFactory.createCustomerDto(findById(customerId));
     }
    public Dto getCustomerAddressDtoById(int customerId){
-        return customerDtoFactory.createCustomerAddressDto(super.findById(customerId));
+        return customerDtoFactory.createCustomerAddressDto(findById(customerId));
+   }
+
+   public Dto getCustomerOrderDtoById(int customerId){
+        return customerDtoFactory.createCustomerOrderDto(findById(customerId));
    }
 
 }

@@ -8,4 +8,6 @@ public interface CustomerDtoFactory{
     public Dto createCustomerDto(Customer customer);
     public Dto createCustomerAddressDto(Customer customer);
 
+    public Dto createCustomerOrderDto(Customer customer);
+
 }

@@ -1,4 +1,4 @@
-package dev.serhat.bookshop.dto;
+package dev.serhat.bookshop.dto.book;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

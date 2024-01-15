@@ -1,6 +1,6 @@
 package dev.serhat.bookshop.service;
 
-import dev.serhat.bookshop.dto.BookDto;
+import dev.serhat.bookshop.dto.book.BookDto;
 import dev.serhat.bookshop.dto.convert.BookAndRelationsDtoFactory;
 import dev.serhat.bookshop.model.Book;
 import dev.serhat.bookshop.repository.BookRepository;
