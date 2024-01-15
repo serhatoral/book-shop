@@ -14,7 +14,9 @@ public class Address {
     private int id;
 
     private String streetNumber;
+
     private String streetName;
+
     private String city;
 
     @ManyToOne
@@ -25,8 +27,6 @@ public class Address {
     @JoinTable(
             name = "customer_address",
             joinColumns = @JoinColumn(name = "address_id"),
-            inverseJoinColumns = @JoinColumn(name = "status_id")
-
-    )
+            inverseJoinColumns = @JoinColumn(name = "status_id"))
     private AddressStatus status;
 }

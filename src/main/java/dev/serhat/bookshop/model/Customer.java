@@ -16,6 +16,7 @@ public class Customer {
     private int id;
 
     private String firstName;
+
     private String lastName;
 
     private String email;
@@ -29,11 +30,14 @@ public class Customer {
     @Column(name = "active")
     private Boolean isActive;
 
+    @OneToMany
+    @JoinColumn(name = "customer_id")
+    private Set<Order> orders;
+
     @ManyToMany
     @JoinTable(
             name = "customer_address",
             joinColumns = @JoinColumn(name = "customer_id"),
-            inverseJoinColumns = @JoinColumn(name = "address_id")
-    )
+            inverseJoinColumns = @JoinColumn(name = "address_id"))
     private Set<Address> addresses;
 }
