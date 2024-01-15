@@ -2,8 +2,8 @@ package dev.serhat.bookshop.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "customer")
@@ -29,5 +29,11 @@ public class Customer {
     @Column(name = "active")
     private Boolean isActive;
 
-
+    @ManyToMany
+    @JoinTable(
+            name = "customer_address",
+            joinColumns = @JoinColumn(name = "customer_id"),
+            inverseJoinColumns = @JoinColumn(name = "address_id")
+    )
+    private Set<Address> addresses;
 }
