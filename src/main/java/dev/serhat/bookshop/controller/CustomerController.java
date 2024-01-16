@@ -33,7 +33,7 @@ public class CustomerController {
 
     @GetMapping("/{customerId}/orders")
     public ResponseEntity<Dto> getCustomerOrderDtoById(@PathVariable int customerId){
-        return ResponseEntity.ok(customerService.getCustomerAddressDtoById(customerId));
+        return ResponseEntity.ok(customerService.getCustomerOrderDtoById(customerId));
 
     }
 
