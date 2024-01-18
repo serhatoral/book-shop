@@ -40,4 +40,20 @@ public class Customer {
             joinColumns = @JoinColumn(name = "customer_id"),
             inverseJoinColumns = @JoinColumn(name = "address_id"))
     private Set<Address> addresses;
+
+
+    public Customer() {
+    }
+
+    public Customer(String firstName, String lastName, String email, String password, LocalDateTime createDate,LocalDateTime lastUpdate, Boolean isActive) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.createDate = createDate;
+        this.lastUpdate = lastUpdate;
+        this.isActive = isActive;
+    }
 }
+
+

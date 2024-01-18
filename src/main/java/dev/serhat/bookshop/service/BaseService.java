@@ -19,4 +19,8 @@ public abstract class BaseService<T,ID>{
     public T findById(ID id){
         return repository.findById(id).orElseThrow(()-> new DataNotFoundException("Şu id'ye sahip veri bulunamadı: "+id ));
     }
+
+    public T create(T t){
+        return repository.save(t);
+    }
 }
