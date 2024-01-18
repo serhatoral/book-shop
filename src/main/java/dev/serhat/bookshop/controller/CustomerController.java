@@ -4,6 +4,7 @@ package dev.serhat.bookshop.controller;
 import dev.serhat.bookshop.dto.Dto;
 import dev.serhat.bookshop.dto.customers.CreateCustomerRequest;
 import dev.serhat.bookshop.service.CustomerService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,7 +43,7 @@ public class CustomerController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Dto> createCustomer(@RequestBody CreateCustomerRequest createCustomerRequest){
+    public ResponseEntity<Dto> createCustomer(@Valid @RequestBody CreateCustomerRequest createCustomerRequest){
         return ResponseEntity.ok(customerService.createCustomer(createCustomerRequest));
 
     }
