@@ -1,14 +1,12 @@
-package dev.serhat.bookshop.dto;
-
+package dev.serhat.bookshop.dto.book;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class PublisherDto {
+public class AuthorDto {
 
     private int id;
-
-    private String publisherName;
+    private String authorName;
 }

@@ -1,13 +1,12 @@
 package dev.serhat.bookshop.dto.convert;
 
-import dev.serhat.bookshop.dto.AuthorDto;
-import dev.serhat.bookshop.dto.BookDto;
-import dev.serhat.bookshop.dto.PublisherDto;
+import dev.serhat.bookshop.dto.book.AuthorDto;
+import dev.serhat.bookshop.dto.book.BookDto;
+import dev.serhat.bookshop.dto.book.PublisherDto;
 import dev.serhat.bookshop.model.Author;
 import dev.serhat.bookshop.model.Book;
 import dev.serhat.bookshop.model.Publisher;
 import org.springframework.stereotype.Component;
-
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
