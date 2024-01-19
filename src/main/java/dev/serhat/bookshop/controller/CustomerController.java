@@ -3,6 +3,7 @@ package dev.serhat.bookshop.controller;
 
 import dev.serhat.bookshop.dto.Dto;
 import dev.serhat.bookshop.dto.customers.CreateCustomerRequest;
+import dev.serhat.bookshop.dto.customers.UpdateCustomerRequest;
 import dev.serhat.bookshop.service.CustomerService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -48,5 +49,11 @@ public class CustomerController {
 
     }
 
+
+    @PostMapping("/update")
+    public ResponseEntity<Dto> createCustomer(@Valid @RequestBody UpdateCustomerRequest updateCustomerRequest){
+        return ResponseEntity.ok(customerService.updateCustomer(updateCustomerRequest));
+
+    }
 
 }

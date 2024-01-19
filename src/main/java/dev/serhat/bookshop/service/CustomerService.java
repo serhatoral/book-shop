@@ -4,7 +4,9 @@ package dev.serhat.bookshop.service;
 import dev.serhat.bookshop.dto.Dto;
 import dev.serhat.bookshop.dto.convert.CustomerDtoFactory;
 import dev.serhat.bookshop.dto.customers.CreateCustomerRequest;
+import dev.serhat.bookshop.dto.customers.UpdateCustomerRequest;
 import dev.serhat.bookshop.exception.CustomerAlreadyExistException;
+import dev.serhat.bookshop.exception.DataNotFoundException;
 import dev.serhat.bookshop.model.Customer;
 import dev.serhat.bookshop.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
@@ -44,7 +46,9 @@ public class CustomerService extends BaseService<Customer,Integer>{
         return customerRepository.findByEmail(email);
     }
 
+/*
 
+ */
     public Dto createCustomer(CreateCustomerRequest createCustomerRequest){
 
 
@@ -67,6 +71,19 @@ public class CustomerService extends BaseService<Customer,Integer>{
 
         customer = create(customer);
 
+        return customerDtoFactory.createCustomerDto(customer);
+    }
+
+    public Dto updateCustomer(UpdateCustomerRequest updateCustomerRequest){
+
+        Customer customer = findById(updateCustomerRequest.getId());
+
+        customer.setEmail(updateCustomerRequest.getEmail());
+        customer.setFirstName(updateCustomerRequest.getFirstName());
+        customer.setLastName(updateCustomerRequest.getLastName());
+        customer.setLastUpdate(LocalDateTime.now());
+
+        customer = update(customer);
         return customerDtoFactory.createCustomerDto(customer);
     }
 

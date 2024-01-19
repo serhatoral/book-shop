@@ -23,4 +23,8 @@ public abstract class BaseService<T,ID>{
     public T create(T t){
         return repository.save(t);
     }
+
+    public T update(T t){
+        return repository.save(t);
+    }
 }

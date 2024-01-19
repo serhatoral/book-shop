@@ -1,7 +1,5 @@
 package dev.serhat.bookshop.dto.customers;
 
-
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -10,18 +8,19 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateCustomerRequest {
+public class UpdateCustomerRequest {
 
-    @Size(min = 3, max = 50)
-    private String firstName;
+    @NotNull
+    private int id;
 
-    @Size(min = 3, max = 50)
-    private String lastName;
-
-    @NotBlank(message = "Email boş olamaz!")
-    @NotNull(message = "Email alanını doldurun!")
-    @Email
+    @NotBlank
+    @NotNull
     private String email;
 
-    private String password;
+    @Size(min = 3,max = 50)
+    private String firstName;
+
+    @Size(min = 3,max = 50)
+    private String lastName;
+
 }
