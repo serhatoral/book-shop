@@ -27,4 +27,9 @@ public abstract class BaseService<T,ID>{
     public T update(T t){
         return repository.save(t);
     }
+
+    public void delete(ID id){
+        repository.deleteById(id);
+
+    }
 }

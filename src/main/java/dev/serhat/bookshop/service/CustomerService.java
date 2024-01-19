@@ -2,6 +2,7 @@ package dev.serhat.bookshop.service;
 
 
 import dev.serhat.bookshop.dto.Dto;
+import dev.serhat.bookshop.dto.SuccessfulResponse;
 import dev.serhat.bookshop.dto.convert.CustomerDtoFactory;
 import dev.serhat.bookshop.dto.customers.CreateCustomerRequest;
 import dev.serhat.bookshop.dto.customers.UpdateCustomerRequest;
@@ -86,5 +87,13 @@ public class CustomerService extends BaseService<Customer,Integer>{
         customer = update(customer);
         return customerDtoFactory.createCustomerDto(customer);
     }
+
+    public SuccessfulResponse deleteCustomer(int id){
+
+        findById(id); // bu fonksiyon aynı zamanda bu idye ait veri var mı onu kontrol ediyor.
+        delete(id);
+        return new SuccessfulResponse("Müşteri başarıyla silindi");
+    }
+
 
 }

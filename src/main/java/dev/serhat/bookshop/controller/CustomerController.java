@@ -2,10 +2,13 @@ package dev.serhat.bookshop.controller;
 
 
 import dev.serhat.bookshop.dto.Dto;
+import dev.serhat.bookshop.dto.SuccessfulResponse;
 import dev.serhat.bookshop.dto.customers.CreateCustomerRequest;
 import dev.serhat.bookshop.dto.customers.UpdateCustomerRequest;
 import dev.serhat.bookshop.service.CustomerService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,6 +56,12 @@ public class CustomerController {
     @PostMapping("/update")
     public ResponseEntity<Dto> createCustomer(@Valid @RequestBody UpdateCustomerRequest updateCustomerRequest){
         return ResponseEntity.ok(customerService.updateCustomer(updateCustomerRequest));
+
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<SuccessfulResponse> createCustomer(@NotNull @RequestParam int id){
+        return ResponseEntity.ok(customerService.deleteCustomer(id));
 
     }
 
