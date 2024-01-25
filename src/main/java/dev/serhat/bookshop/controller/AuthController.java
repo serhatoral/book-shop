@@ -29,9 +29,9 @@ public class AuthController {
     @PostMapping("/generate-token")
     public ResponseEntity<?> generateToken(@RequestBody AuthRequest authRequest){
 
-        System.out.println("controller");
+
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getEmail(),authRequest.getPassword()));
-        System.out.println("controller2");
+
         if(authentication.isAuthenticated())
             return ResponseEntity.ok(jwtGenerator.generateToken(authRequest.getEmail()));
         else
