@@ -1,4 +1,6 @@
 package dev.serhat.bookshop.dto;
 
-public interface Dto {
+import java.io.Serializable;
+
+public interface Dto extends Serializable {
 }

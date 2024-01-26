@@ -5,6 +5,8 @@ import dev.serhat.bookshop.dto.convert.BookAndRelationsDtoFactory;
 import dev.serhat.bookshop.model.Book;
 import dev.serhat.bookshop.repository.BookRepository;
 import org.springframework.stereotype.Service;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class BookService extends BaseService<Book,Integer>{
@@ -22,5 +24,13 @@ public class BookService extends BaseService<Book,Integer>{
 
       //  return bookAndRelationsDtoFactory.createBookDto(bookRepository.findById(id).orElseThrow(()-> new DataNotFoundException("Şu id'ye sahip kitap bulunamadı: "+id )));
           return  bookAndRelationsDtoFactory.createBookDto(super.findById(id));
+    }
+
+    public List<BookDto> findAll(){
+        List<BookDto> bookDtos = new ArrayList<>();
+
+        List<Book> books = bookRepository.findAll();
+        books.forEach(b -> bookDtos.add(bookAndRelationsDtoFactory.createBookDto(b)));
+        return  bookDtos;
     }
 }

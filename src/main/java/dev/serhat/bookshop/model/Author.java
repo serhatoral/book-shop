@@ -1,15 +1,13 @@
 package dev.serhat.bookshop.model;
 
-
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.util.Set;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "author")
 @Data
-public class Author {
+public class Author implements Serializable {
 
     @Id
     @GeneratedValue
