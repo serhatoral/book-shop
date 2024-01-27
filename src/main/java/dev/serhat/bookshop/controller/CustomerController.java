@@ -6,9 +6,11 @@ import dev.serhat.bookshop.dto.SuccessfulResponse;
 import dev.serhat.bookshop.dto.customers.CreateCustomerRequest;
 import dev.serhat.bookshop.dto.customers.UpdateCustomerRequest;
 import dev.serhat.bookshop.service.CustomerService;
+import dev.serhat.bookshop.service.LogService;
+import dev.serhat.bookshop.utility.LoggerUtil;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.slf4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,15 +19,20 @@ import org.springframework.web.bind.annotation.*;
 public class CustomerController {
 
     private final CustomerService customerService;
+    private final Logger logger;
+    private final LogService logService;
 
-    public CustomerController(CustomerService customerService) {
+    public CustomerController(CustomerService customerService, LoggerUtil logger, LogService logService) {
         this.customerService = customerService;
+        this.logService = logService;
+        this.logger = LoggerUtil.getLogger(CustomerController.class);
     }
 
     @GetMapping("/{customerId}")
     public ResponseEntity<Dto> getCustomerDtoById(@PathVariable int customerId){
-        return ResponseEntity.ok(customerService.getCustomerDtoById(customerId));
 
+        logService.infoLog(logger,"getCustomerDtoById() den "+customerId+" id'li kullanıcı getirildi");
+        return ResponseEntity.ok(customerService.getCustomerDtoById(customerId));
     }
 
     @GetMapping("/{customerId}/addresses")
