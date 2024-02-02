@@ -10,6 +10,7 @@ import dev.serhat.bookshop.exception.CustomerAlreadyExistException;
 import dev.serhat.bookshop.exception.DataNotFoundException;
 import dev.serhat.bookshop.model.Customer;
 import dev.serhat.bookshop.repository.CustomerRepository;
+import dev.serhat.bookshop.security.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -17,11 +18,13 @@ import java.util.Optional;
 @Service
 public class CustomerService extends BaseService<Customer,Integer>{
 
+    private final PasswordEncoder passwordEncoder;
     private final CustomerDtoFactory customerDtoFactory;
     private final CustomerRepository customerRepository;
 
-    public CustomerService(CustomerRepository repository, CustomerDtoFactory customerDtoFactory, CustomerRepository customerRepository) {
+    public CustomerService(CustomerRepository repository, PasswordEncoder passwordEncoder, CustomerDtoFactory customerDtoFactory, CustomerRepository customerRepository) {
         super(repository);
+        this.passwordEncoder = passwordEncoder;
         this.customerDtoFactory = customerDtoFactory;
         this.customerRepository = customerRepository;
     }
@@ -53,17 +56,19 @@ public class CustomerService extends BaseService<Customer,Integer>{
     public Dto createCustomer(CreateCustomerRequest createCustomerRequest){
 
 
+
         if(getCustomerByEmail(createCustomerRequest.getEmail()).isPresent())
             throw new CustomerAlreadyExistException();
 
         boolean isActive= true;
         LocalDateTime lastUpdateDate = LocalDateTime.now();
 
+
         Customer customer = new Customer(
                 createCustomerRequest.getFirstName(),
                 createCustomerRequest.getLastName(),
                 createCustomerRequest.getEmail(),
-                createCustomerRequest.getPassword(),
+               passwordEncoder.bCryptPasswordEncoder().encode(createCustomerRequest.getPassword()),
                 lastUpdateDate,
                 lastUpdateDate,
                 isActive

@@ -4,6 +4,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -51,6 +52,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return  new ResponseEntity<>(createCustomErrorResponse(
                 customerAlreadyExistException, HttpStatus.BAD_REQUEST), HttpStatus.BAD_REQUEST);
 
+    }
+
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<CustomErrorResponse> customerAlreadyExistException(){
+
+        BadCredentialsException badCredentialsException = new BadCredentialsException("Şifre Yanlış");
+        return   new ResponseEntity<>(createCustomErrorResponse(badCredentialsException,HttpStatus.UNAUTHORIZED),HttpStatus.UNAUTHORIZED);
     }
 
 
