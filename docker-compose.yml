@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  #cache için redis kullanılıyor
+  redis:
+    image: redis:latest
+    container_name: bookshop-redis
+    ports:
+      - "6379:6379"
+
+#Log kayıtları için mongodb kullanılıyor
+  mongodb:
+    image: mongo:latest
+    container_name: bookshop-mongodb
+    ports:
+      - "27017:27017"
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: bookshop-rabbitmq
+    ports:
+       # AMQP protocol port
+      - "5672:5672"
+      # HTTP management UI
+      - "15672:15672"
+    expose:
+      - '5672'

@@ -3,12 +3,13 @@ package dev.serhat.bookshop.dto.book;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.time.LocalDate;
+import lombok.NoArgsConstructor;
+import java.util.Date;
 import java.util.Set;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class BookDto {
 
 
@@ -24,7 +25,7 @@ public class BookDto {
     private int numPages;
 
     @JsonProperty("Publication Date")
-    private LocalDate publicationDate;
+    private Date publicationDate;
 
     @JsonProperty("Author")
     private Set<AuthorDto> authorDto;

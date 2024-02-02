@@ -3,13 +3,14 @@ package dev.serhat.bookshop.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDate;
+import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
 @Table(name = "book")
 @Data
-public class Book {
+public class Book implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +23,7 @@ public class Book {
 
     private int numPages;
 
-    private LocalDate publicationDate;
+    private Date publicationDate;
 
     @ManyToOne //Unidirectional
     @JoinColumn(name = "language_id")

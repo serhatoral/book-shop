@@ -27,4 +27,22 @@ public class AuthorService extends BaseService<Author,Integer> {
         return bookAndRelationsDtoFactory.createAuthorDto(super.findById(id));
       //  return bookAndRelationsDtoFactory.createAuthorDto(authorRepository.findById(id).orElseThrow(()-> new DataNotFoundException("Şu id'ye sahip kitap bulunamadı: "+id )));
     }
+
+    public AuthorDto create(AuthorDto authorDto){
+
+        Author author = new Author();
+        author.setId(authorDto.getId());
+        author.setAuthorName(authorDto.getAuthorName());
+     return bookAndRelationsDtoFactory.createAuthorDto(super.create(author)) ;
+    }
+
+    public AuthorDto update(AuthorDto authorDto){
+
+        Author author = new Author();
+        author.setId(authorDto.getId());
+        author.setAuthorName(authorDto.getAuthorName());
+
+        return bookAndRelationsDtoFactory.createAuthorDto(super.update(author));
+    }
+
 }
