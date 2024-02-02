@@ -2,9 +2,8 @@ package dev.serhat.bookshop.controller;
 
 
 import dev.serhat.bookshop.dto.request.AuthRequest;
-import dev.serhat.bookshop.exception.DataNotFoundException;
+import dev.serhat.bookshop.dto.response.JwtResponse;
 import dev.serhat.bookshop.security.JwtGenerator;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,12 +28,10 @@ public class AuthController {
     @PostMapping("/generate-token")
     public ResponseEntity<?> generateToken(@RequestBody AuthRequest authRequest){
 
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(authRequest.getEmail(),authRequest.getPassword()));
 
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getEmail(),authRequest.getPassword()));
+        return ResponseEntity.ok(new JwtResponse(jwtGenerator.generateToken(authRequest.getEmail())));
 
-        if(authentication.isAuthenticated())
-            return ResponseEntity.ok(jwtGenerator.generateToken(authRequest.getEmail()));
-        else
-            return  new ResponseEntity<>(new DataNotFoundException("böyle bir kulanıcı yok"), HttpStatus.NOT_FOUND);
     }
 }
