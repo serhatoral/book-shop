@@ -3,6 +3,7 @@ package dev.serhat.bookshop.controller;
 
 import dev.serhat.bookshop.dto.request.AuthRequest;
 import dev.serhat.bookshop.security.JwtGenerator;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,7 +24,7 @@ public class AuthController {
     }
 
     @PostMapping("/generate-token")
-    public ResponseEntity<?> generateToken(@RequestBody AuthRequest authRequest){
+    public ResponseEntity<?> generateToken(@Valid @RequestBody AuthRequest authRequest){
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(authRequest.getEmail(),authRequest.getPassword()));

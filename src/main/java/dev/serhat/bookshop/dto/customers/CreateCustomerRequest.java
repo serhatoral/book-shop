@@ -23,5 +23,7 @@ public class CreateCustomerRequest {
     @Email
     private String email;
 
+    @NotBlank(message = "password boş olamaz!")
+    @NotNull(message = "password alanını doldurun!")
     private String password;
 }
