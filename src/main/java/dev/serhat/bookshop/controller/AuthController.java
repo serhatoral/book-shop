@@ -2,19 +2,16 @@ package dev.serhat.bookshop.controller;
 
 
 import dev.serhat.bookshop.dto.request.AuthRequest;
-import dev.serhat.bookshop.dto.response.JwtResponse;
 import dev.serhat.bookshop.security.JwtGenerator;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("v1/auth")
+@CrossOrigin(origins = "http://localhost:9090")
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
@@ -31,7 +28,7 @@ public class AuthController {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(authRequest.getEmail(),authRequest.getPassword()));
 
-        return ResponseEntity.ok(new JwtResponse(jwtGenerator.generateToken(authRequest.getEmail())));
+        return ResponseEntity.ok(jwtGenerator.getJwtResponse(authRequest.getEmail()));
 
     }
 }

@@ -7,7 +7,6 @@ import dev.serhat.bookshop.dto.convert.CustomerDtoFactory;
 import dev.serhat.bookshop.dto.customers.CreateCustomerRequest;
 import dev.serhat.bookshop.dto.customers.UpdateCustomerRequest;
 import dev.serhat.bookshop.exception.CustomerAlreadyExistException;
-import dev.serhat.bookshop.exception.DataNotFoundException;
 import dev.serhat.bookshop.model.Customer;
 import dev.serhat.bookshop.repository.CustomerRepository;
 import dev.serhat.bookshop.security.PasswordEncoder;
@@ -50,6 +49,10 @@ public class CustomerService extends BaseService<Customer,Integer>{
         return customerRepository.findByEmail(email);
     }
 
+    public Dto getCustomerDtoByEmail(String email){
+
+        return customerDtoFactory.createCustomerDto(getCustomerByEmail(email).get());
+    }
 /*
 
  */
