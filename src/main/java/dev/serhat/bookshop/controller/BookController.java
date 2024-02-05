@@ -3,15 +3,16 @@ package dev.serhat.bookshop.controller;
 import dev.serhat.bookshop.dto.book.BookDto;
 import dev.serhat.bookshop.service.BookService;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/v1/book")
+@CrossOrigin(origins = "http://localhost:9090")
 public class BookController {
 
     private final BookService bookService;
@@ -30,5 +31,11 @@ public class BookController {
     public List<BookDto> findAll(){
 
         return bookService.findAll();
+    }
+
+    @GetMapping("/get-with-page")
+    public Page<BookDto> findAllWithPage(@RequestParam int page){
+
+        return bookService.findAllWithPage(page);
     }
 }
