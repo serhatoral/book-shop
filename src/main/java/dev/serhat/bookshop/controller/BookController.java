@@ -4,7 +4,6 @@ import dev.serhat.bookshop.dto.book.BookDto;
 import dev.serhat.bookshop.service.BookService;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

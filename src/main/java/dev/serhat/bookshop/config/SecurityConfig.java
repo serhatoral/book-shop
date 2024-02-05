@@ -41,7 +41,12 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
 
                 .authorizeHttpRequests(x->
-                        x.requestMatchers("/v1/author/**", "/v1/auth/generate-token/**","/v1/customer/create","/v1/book/get-with-page").permitAll()
+                        x.requestMatchers(
+                                "/v1/author/**",
+                                "/v1/auth/generate-token/**",
+                                "/v1/customer/create",
+                                "/v1/book/get-with-page"
+                        ).permitAll()
                 )
                 .authorizeHttpRequests(x-> x.anyRequest().authenticated())
                 .sessionManagement(x-> x.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

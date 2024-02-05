@@ -45,6 +45,6 @@ public class BookService extends BaseService<Book,Integer>{
         Page<Book> books = bookRepository.findAll(page);
         books.forEach(b -> bookDtos.add(bookAndRelationsDtoFactory.createBookDto(b)));
 
-        return  new PageImpl<>(bookDtos,page,books.getTotalPages());
+        return  new PageImpl<>(bookDtos,page,bookRepository.count());
     }
 }
