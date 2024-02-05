@@ -37,4 +37,10 @@ public class BookController {
 
         return bookService.findAllWithPage(page);
     }
+
+    @GetMapping("/get-by-title-containing")
+    public Page<BookDto> findByTitleLike(@RequestParam String title, int page){
+
+        return bookService.findByTitleContaining(title,page);
+    }
 }

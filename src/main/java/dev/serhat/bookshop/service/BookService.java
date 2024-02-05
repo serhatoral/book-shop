@@ -47,4 +47,13 @@ public class BookService extends BaseService<Book,Integer>{
 
         return  new PageImpl<>(bookDtos,page,bookRepository.count());
     }
+
+    public Page<BookDto> findByTitleContaining(String title,int pageNumber){
+        List<BookDto> bookDtos = new ArrayList<>();
+        Pageable page = PageRequest.of(pageNumber, 24);
+        Page<Book> books = bookRepository.findByTitleContaining(title,page);
+        books.forEach(b -> bookDtos.add(bookAndRelationsDtoFactory.createBookDto(b)));
+
+        return new PageImpl<>(bookDtos,page,bookRepository.countByTitleContaining(title));
+    }
 }
