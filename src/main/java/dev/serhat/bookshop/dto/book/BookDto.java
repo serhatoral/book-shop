@@ -21,15 +21,15 @@ public class BookDto {
     @JsonProperty("isbn-13")
     private String isbn13;
 
-    @JsonProperty("Number of Pages")
+    @JsonProperty("numberOfPages")
     private int numPages;
 
-    @JsonProperty("Publication Date")
+    @JsonProperty("publicationDate")
     private Date publicationDate;
 
-    @JsonProperty("Author")
+    @JsonProperty("author")
     private Set<AuthorDto> authorDto;
 
-    @JsonProperty("Publisher")
+    @JsonProperty("publisher")
     private PublisherDto publisherDto;
 }

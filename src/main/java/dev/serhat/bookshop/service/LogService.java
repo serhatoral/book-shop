@@ -35,7 +35,7 @@ public class LogService {
                 LocalDateTime.now(), Level.INFO.toString(),message, logger.getName() );
 
         logger.info(message);
-        rabbitTemplate.convertAndSend("default","log-routing-key",logEntity);
+        rabbitTemplate.convertAndSend("log-exchange","log-routing-key",logEntity);
        // logSave(logEntity);
     }
 
