@@ -22,7 +22,7 @@ public class BookController {
 
     @GetMapping("/{bookId}")
     public ResponseEntity<BookDto> findById(@PathVariable int bookId){
-        return ResponseEntity.ok(bookService.findById(bookId));
+        return ResponseEntity.ok(bookService.findBookDtoById(bookId));
     }
 
     @GetMapping("/get-all")

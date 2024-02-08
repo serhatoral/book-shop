@@ -42,6 +42,14 @@ public class Customer {
     private Set<Address> addresses;
 
 
+    @ManyToMany
+    @JoinTable(
+            name = "book_like",
+            joinColumns = @JoinColumn(name = "customer_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
+    private Set<Book> likedBooks;
+
     public Customer() {
     }
 

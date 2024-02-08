@@ -39,7 +39,7 @@ public class JwtGenerator {
 
     public JwtResponse getJwtResponse(String username){
 
-        return new JwtResponse(username,(CustomerDto) customerService.getCustomerDtoByEmail(username));
+        return new JwtResponse(generateToken(username),(CustomerDto) customerService.getCustomerDtoByEmail(username));
     }
 
     protected static SecretKey getSignKey(){

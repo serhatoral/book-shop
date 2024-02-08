@@ -23,7 +23,7 @@ public class BookService extends BaseService<Book,Integer>{
         this.bookAndRelationsDtoFactory = bookAndRelationsDtoFactory;
     }
 
-    public BookDto findById(int id){
+    public BookDto findBookDtoById(int id){
 
 
       //  return bookAndRelationsDtoFactory.createBookDto(bookRepository.findById(id).orElseThrow(()-> new DataNotFoundException("Şu id'ye sahip kitap bulunamadı: "+id )));
