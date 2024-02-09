@@ -38,6 +38,7 @@ services:
 
   kafka:
     image: "confluentinc/cp-kafka:latest"
+    container_name: bookshop-kafka
     ports:
       - "9092:9092"
     expose:
