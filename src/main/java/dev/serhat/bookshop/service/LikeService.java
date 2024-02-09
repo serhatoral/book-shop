@@ -6,6 +6,7 @@ import dev.serhat.bookshop.dto.convert.BookAndRelationsDtoFactory;
 import dev.serhat.bookshop.dto.like.LikedBook;
 import dev.serhat.bookshop.model.Book;
 import dev.serhat.bookshop.model.Customer;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -16,14 +17,15 @@ public class LikeService {
 
     private final CustomerService customerService;
     private final BookService bookService;
-
     private final BookAndRelationsDtoFactory bookAndRelationsDtoFactory;
+    private final KafkaTemplate<String,Object> kafkaTemplate;
 
 
-    public LikeService(CustomerService customerService, BookService bookService, BookAndRelationsDtoFactory bookAndRelationsDtoFactory) {
+    public LikeService(CustomerService customerService, BookService bookService, BookAndRelationsDtoFactory bookAndRelationsDtoFactory, KafkaTemplate<String, Object> kafkaTemplate) {
         this.customerService = customerService;
         this.bookService = bookService;
         this.bookAndRelationsDtoFactory = bookAndRelationsDtoFactory;
+        this.kafkaTemplate = kafkaTemplate;
     }
 
 
@@ -34,7 +36,8 @@ public class LikeService {
 
         customer.getLikedBooks().add(book);
 
-        customerService.update(customer);
+        kafkaTemplate.send("customer-like-book",customer);
+        //customerService.update(customer); // save işlemi base serviste kafka yı dinleyen consumur(update metodu) ile kaydedilecek
         return  new SuccessfulResponse("Kitap beğinilenler listesine alındı");
     }
 

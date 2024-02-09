@@ -2,6 +2,7 @@ package dev.serhat.bookshop.service;
 
 import dev.serhat.bookshop.exception.DataNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.kafka.annotation.KafkaListener;
 
 
 /*
@@ -24,6 +25,7 @@ public abstract class BaseService<T,ID>{
         return repository.save(t);
     }
 
+    @KafkaListener(topics = "customer-like-book", groupId = "group-id") //LikeService de bulunan likeBook methodunu dinler
     public T update(T t){
         return repository.save(t);
     }
