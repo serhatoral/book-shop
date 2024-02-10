@@ -1,15 +1,10 @@
 package dev.serhat.bookshop.security;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-
-import javax.crypto.SecretKey;
-import java.security.Key;
 import java.util.Date;
 
 @Component
@@ -22,6 +17,15 @@ public class JwtValidator {
         Date expirationDate = extractEcpirationDate(token);
 
          return userDetails.getUsername().equals(email)  && expirationDate.after(new Date());
+    }
+
+    public Boolean isTokenExpired(String token){
+            try {
+                return extractEcpirationDate(token).before(new Date());
+            }catch (ExpiredJwtException expiredJwtException){
+                return true;
+            }
+
     }
 
     public Claims extractClaims(String token){
