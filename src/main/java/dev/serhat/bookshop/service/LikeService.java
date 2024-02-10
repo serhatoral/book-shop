@@ -6,9 +6,9 @@ import dev.serhat.bookshop.dto.convert.BookAndRelationsDtoFactory;
 import dev.serhat.bookshop.dto.like.LikedBook;
 import dev.serhat.bookshop.model.Book;
 import dev.serhat.bookshop.model.Customer;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,8 +37,12 @@ public class LikeService {
         customer.getLikedBooks().add(book);
 
         kafkaTemplate.send("customer-like-book",customer);
-        //customerService.update(customer); // save işlemi base serviste kafka yı dinleyen consumur(update metodu) ile kaydedilecek
         return  new SuccessfulResponse("Kitap beğinilenler listesine alındı");
+    }
+
+    @KafkaListener(topics = "customer-like-book", groupId = "group-id")
+    public void saveLikedBook(Customer customer){
+        customerService.update(customer);
     }
 
     public LikedBook getLikedBooks(int customerId){

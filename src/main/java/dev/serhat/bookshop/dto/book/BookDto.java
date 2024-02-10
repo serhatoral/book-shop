@@ -1,5 +1,6 @@
 package dev.serhat.bookshop.dto.book;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +26,7 @@ public class BookDto {
     private int numPages;
 
     @JsonProperty("publicationDate")
+    @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss")
     private Date publicationDate;
 
     @JsonProperty("author")
