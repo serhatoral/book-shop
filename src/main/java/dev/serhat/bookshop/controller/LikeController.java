@@ -24,6 +24,12 @@ public class LikeController {
         return ResponseEntity.ok(likeService.likeBook(customerId,bookId));
     }
 
+    @GetMapping("/remove/book")
+    public ResponseEntity<SuccessfulResponse> removeLikeBook(@RequestParam int customerId, int bookId){
+
+        return ResponseEntity.ok(likeService.removeLikeBook(customerId,bookId));
+    }
+
     @GetMapping("/customer-books")
     public ResponseEntity<LikedBook> getLikeBook(@RequestParam int customerId){
 

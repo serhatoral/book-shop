@@ -11,6 +11,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class LikeService {
@@ -43,6 +44,16 @@ public class LikeService {
     @KafkaListener(topics = "customer-like-book", groupId = "group-id")
     public void saveLikedBook(Customer customer){
         customerService.update(customer);
+    }
+
+    public SuccessfulResponse removeLikeBook(int customerId, int bookId){
+
+        Customer customer = customerService.findById(customerId);
+
+        customer.setLikedBooks(customer.getLikedBooks().stream().filter(b-> b.getId() != bookId).collect(Collectors.toSet()));
+
+        kafkaTemplate.send("customer-like-book",customer);
+        return  new SuccessfulResponse("Kitap beğinilenler listesinden kaldırıldı");
     }
 
     public LikedBook getLikedBooks(int customerId){
