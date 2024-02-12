@@ -1,7 +1,6 @@
 package dev.serhat.bookshop.socket;
 
 import com.corundumstudio.socketio.SocketIOClient;
-import dev.serhat.bookshop.dto.SocketMessage;
 import org.springframework.stereotype.Service;
 
 @Service

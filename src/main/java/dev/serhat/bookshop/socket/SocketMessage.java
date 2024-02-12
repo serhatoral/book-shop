@@ -1,4 +1,4 @@
-package dev.serhat.bookshop.dto;
+package dev.serhat.bookshop.socket;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,7 +20,7 @@ public class SocketMessage {
     private String message;
     private String room;
     private String time;
-    
+
     public SocketMessage(String from, String message) {
         this.from = from;
         this.message = message;
