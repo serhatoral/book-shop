@@ -46,7 +46,9 @@ public class SecurityConfig {
                                 "/v1/auth/generate-token/**",
                                 "/v1/customer/create",
                                 "/v1/book/get-with-page",
-                                "/v1/book/get-by-title-containing"
+                                "/v1/book/get-by-title-containing",
+                                "/localhost:7070/**"
+
                         ).permitAll()
                 )
                 .authorizeHttpRequests(x-> x.anyRequest().authenticated())
